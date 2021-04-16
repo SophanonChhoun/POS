@@ -1,0 +1,11 @@
+{
+    "/dist/js/adminAuth/login.js": "/dist/js/adminAuth/login.js",
+    "/dist/js/app.js": "/dist/js/app.js",
+    "/dist/js/axios.js": "/dist/js/axios.js",
+    "/css/app.css": "/css/app.css",
+    "/css/profile.css": "/css/profile.css",
+    "/dist/js/template/create.js": "/dist/js/template/create.js",
+    "/dist/js/template/edit.js": "/dist/js/template/edit.js",
+    "/dist/js/user/create.js": "/dist/js/user/create.js",
+    "/dist/js/user/edit.js": "/dist/js/user/edit.js"
+}
