@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->bigInteger("media_id");
+            $table->bigInteger("media_id")->nullable();
             $table->tinyInteger("is_enable");
             $table->string('password');
             $table->timestamps();
