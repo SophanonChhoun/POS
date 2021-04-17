@@ -42,6 +42,15 @@ Route::group(['prefix' => 'admin'], function(){
             Route::post("/delete/{id}",[TemplateController::class,"destroy"]);
         });
 
+        Route::group(['prefix' => "profile"],function (){
+            Route::get("/show",[UserController::class,"showProfile"]);
+            Route::post("/update",[UserController::class,"updateProfile"]);
+            Route::get("/change/password",[UserController::class,"changePassword"]);
+            Route::post("/password",[UserController::class,"updatePassword"]);
+            Route::get("/change/avatar",[UserController::class,"changeAvatar"]);
+            Route::post("/avatar",[UserController::class,"updateAvatar"]);
+        });
+
         Route::get('/dashboard', [DashboardController::class, 'index']);
         Route::get('/logout', [AdminAuthController::class, 'logout']);
     });

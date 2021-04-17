@@ -20,12 +20,9 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-body">
-                <div id="editUser" v-cloak>
+                <div id="editTemplate" v-cloak>
                     <form action="#" @submit.prevent="submit">
                         @include('admin.user.form')
-                        <div class="breadcrumb bg-danger" v-if="error">
-                            <p>@{{ error }}</p>
-                        </div>
                         <div class="text-right">
                             <button type="submit" id="submit"
                                     class="btn btn-success save-cancel">Save</button>
@@ -44,5 +41,5 @@
         const data = @json($user);
     </script>
     <script src="{{ mix('/dist/js/app.js') }}"></script>
-    <script src="{{ mix('/dist/js/user/edit.js') }}"></script>
+    <script src="{{ mix('/dist/js/template/edit.js') }}"></script>
 @endsection

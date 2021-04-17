@@ -3,7 +3,7 @@ import SingleSelect from "../components/SingleSelect";
 import SingleImageUploader from "../components/SingleImageUploader";
 
 new Vue({
-    el: '#editTemplate',
+    el: '#editUser',
     components: {
         Multiselect,
         SingleSelect,
@@ -30,8 +30,7 @@ new Vue({
                         if(response.data.success){
                             window.location.href = '/admin/user/list';
                         }else{
-                            alert(response.data.data)
-                            this.error = response.data.message;
+                            this.error = 'Sorry, this email already existed. Please input a new one.';
                         }
                     });
                 } else {

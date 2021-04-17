@@ -97,7 +97,9 @@
                     >
                     <span class="help-block">@{{ errors.first('is_enable') }}</span>
                 </div>
-
+                <div v-if="error">
+                    @include('admin.layout.message')
+                </div>
                 <br>
             </div>
         </div>
