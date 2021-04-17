@@ -39,7 +39,7 @@ new Vue({
                         if(response.data.success){
                             window.location.href = '/admin/template/list';
                         }else{
-                            alert(response.data.data)
+                            this.error = response.data.data
                             hideLoading()
                         }
                     }).catch(error => {

@@ -42,8 +42,7 @@ new Vue({
                         if(response.data.success){
                             window.location.href = '/admin/user/list';
                         }else{
-                            alert(response.data.data)
-                            hideLoading()
+                            this.error = response.data.data;
                         }
                     }).catch(error => {
                         showAlertError(error.response.data.message)

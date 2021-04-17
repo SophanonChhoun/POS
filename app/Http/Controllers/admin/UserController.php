@@ -4,10 +4,13 @@ namespace App\Http\Controllers\admin;
 
 use App\Core\MediaLib;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Exception;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -76,10 +79,11 @@ class UserController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($id, UserProfileRequest $request)
     {
         DB::beginTransaction();
         try {
+
             $user = User::find($id);
             if(!$user)
             {
@@ -130,6 +134,114 @@ class UserController extends Controller
             return back();
         }catch (Exception $e){
             return $this->fail($e->getMessage());
+        }
+    }
+
+    public function showProfile()
+    {
+        $data = User::with("media")->find(auth()->user()->id);
+        return view('admin.profile.information',compact('data'));
+    }
+
+    public function updateProfile(UserProfileRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::find(auth()->user()->id);
+            if(!$user)
+            {
+                return $this->fail("Cannot find this user");
+            }
+            $data = [
+                "name" => $request->name,
+                "first_name" => $request->first_name,
+                "last_name" => $request->last_name,
+                "email" => $request->email,
+                "phone_number" => $request->phone_number,
+            ];
+            $user = $user->update($data);
+
+            if(!$user)
+            {
+                return $this->fail("Fail cannot update");
+            }
+
+            DB::commit();
+            return $this->success($user);
+        }catch (Exception $exception){
+            DB::rollBack();
+            return $this->fail($exception);
+        }
+    }
+
+    public function changePassword()
+    {
+        try {
+            $data = User::with("media")->find(auth()->user()->id);
+            return view("admin.profile.password",compact("data"));
+        }catch (Exception $exception){
+            return redirect('admin/profile/show');
+        }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $id = auth()->user()->id;
+            if (!(Hash::check($request->old_password, Auth::user()->getAuthPassword())))
+            {
+                return $this->fail("Wrong old password. Please input a correct one.");
+            }
+            $request['password'] = $request['new_password'];
+
+            $user=User::find($id)->update([
+                "password" => $request['new_password']
+            ]);
+            $user = User::find($id);
+            if (auth()->attempt([
+                "email" => $user->email,
+                "password" => $request['new_password'],
+                "is_enable" => true
+            ])){
+                DB::commit();
+                return $this->success("Success");
+            }else{
+                DB::rollback();
+                return $this->fail("Something went wrong");
+            }
+        }catch (Exception $exception){
+            DB::rollback();
+            return $this->fail("Something went wrong");
+        }
+    }
+
+    public function changeAvatar()
+    {
+        try {
+            $data = User::with("media")->find(auth()->user()->id);
+            return view("admin.profile.avatar",compact("data"));
+        }catch (Exception $exception){
+            return redirect('admin/profile/show');
+        }
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            if($request->image)
+            {
+                $media_id = MediaLib::generateImageBase64($request['image']);
+                User::find(auth()->user()->id)->update([
+                    "media_id" => $media_id
+                ]);
+            }
+            DB::commit();
+            return $this->success("Success");
+        }catch (Exception $exception){
+            DB::rollback();
+            return $this->fail("Something went wrong");
         }
     }
 }

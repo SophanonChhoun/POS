@@ -1420,8 +1420,7 @@ new Vue({
             if (response.data.success) {
               window.location.href = '/admin/user/list';
             } else {
-              alert(response.data.data);
-              hideLoading();
+              _this.error = response.data.data;
             }
           })["catch"](function (error) {
             showAlertError(error.response.data.message);

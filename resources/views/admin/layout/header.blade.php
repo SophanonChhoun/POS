@@ -44,7 +44,7 @@
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
                 <li>
-                    <a class="profile-pic" href="#">
+                    <a class="profile-pic" href="{{ url('admin/profile/show') }}">
                         <img src="{{ url(auth()->user()->media->file_url ?? 'https://image.shutterstock.com/image-vector/profile-placeholder-image-gray-silhouette-260nw-1153673752.jpg') }}" alt="user-img" width="36"
                              class="img-circle"><span class="text-white font-medium">{{ auth()->user()->first_name }}</span></a>
                 </li>

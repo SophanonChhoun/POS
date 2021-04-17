@@ -1380,7 +1380,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 new Vue({
-  el: '#editUser',
+  el: '#editTemplate',
   components: {
     Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a,
     SingleSelect: _components_SingleSelect__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -1408,8 +1408,7 @@ new Vue({
             if (response.data.success) {
               window.location.href = '/admin/template/list';
             } else {
-              alert(response.data.data);
-              _this.error = response.data.message;
+              _this.error = response.data.data;
             }
           });
         } else {

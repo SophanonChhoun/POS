@@ -4609,7 +4609,7 @@ new Vue({
             if (response.data.success) {
               window.location.href = '/admin/template/list';
             } else {
-              alert(response.data.data);
+              _this.error = response.data.data;
               Object(sweetalert2__WEBPACK_IMPORTED_MODULE_3__["hideLoading"])();
             }
           })["catch"](function (error) {
