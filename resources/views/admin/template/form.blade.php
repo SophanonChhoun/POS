@@ -34,7 +34,9 @@
                            v-model="data.is_enable"
                     >
                 </div>
-
+                <div v-if="error">
+                    @include('admin.layout.message')
+                </div>
                 <br>
             </div>
         </div>

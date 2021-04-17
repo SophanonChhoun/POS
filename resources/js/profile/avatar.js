@@ -1,14 +1,7 @@
-import Multiselect from "vue-multiselect";
-import SingleSelect from "../components/SingleSelect";
 import SingleImageUploader from "../components/SingleImageUploader";
 
 new Vue({
-    el: '#editTemplate',
-    components: {
-        Multiselect,
-        SingleSelect,
-        SingleImageUploader
-    },
+    el: '#editAvatar',
     data: {
         data: data,
         id: data.id,
@@ -17,6 +10,7 @@ new Vue({
         error_image: '',
         image: '',
     },
+    components: {SingleImageUploader},
     mounted() {
     },
     methods: {
@@ -26,12 +20,14 @@ new Vue({
                 let save = true;
 
                 if(result && save) {
-                    axios.post('/admin/template/update/'+this.id,this.data).then(response => {
+                    axios.post('/admin/profile/avatar',this.data).then(response => {
                         if(response.data.success){
-                            window.location.href = '/admin/template/list';
+                            window.location.href = '/admin/profile/show';
                         }else{
-                            this.error = response.data.data;
+                            this.error = response.data;
                         }
+                    }).catch(error => {
+                        console.log(error.data);
                     });
                 } else {
                     //set Window location to top

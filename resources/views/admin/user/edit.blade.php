@@ -25,9 +25,6 @@
                 <div id="editUser" v-cloak>
                     <form action="#" @submit.prevent="submit">
                         @include('admin.user.form')
-                        <div class="breadcrumb bg-danger" v-if="error">
-                            <p>@{{ error }}</p>
-                        </div>
                         <div class="text-right">
                             <button type="submit" id="submit"
                                     class="btn btn-success save-cancel">Save</button>
