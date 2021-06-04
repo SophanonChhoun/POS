@@ -69,12 +69,9 @@ class AdminAuthController extends Controller
                 );
                 Session::put('auth', $auth);
                 DB::commit();
-                return redirect('/admin/dashboard');
-
+                return $this->success('');
             }else{
-                return view('login', [
-                    'errorMessageDuration' => 'Wrong login details',
-                ]);
+                return $this->fail('Wrong email/password');
             }
         }catch (Exception $exception){
             DB::rollback();

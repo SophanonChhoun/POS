@@ -26,7 +26,7 @@
                         <div class="form-group has-search">
                             <form action="/admin/user/list" method="get">
                                 <div class="input-group">
-                                    <input type="text" placeholder="@lang('general.search')" name="search" value="{{ request()->get('search') }}">
+                                    <input type="text" placeholder="Search" class="form-control" name="search" value="{{ request()->get('search') }}">
                                     <button type="submit" class="btn-success"><i class="fa fa-search"></i></button>
                                 </div>
                             </form>
