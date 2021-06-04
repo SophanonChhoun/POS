@@ -25,7 +25,6 @@ class CreateMediaTable extends Migration
             $table->integer('media_id')->unsigned();
             $table->text('file_url');
             $table->text('file_name');
-            $table->longText('file_base64');
             $table->string('size');
             $table->timestamps();
         });

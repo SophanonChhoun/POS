@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -118,10 +118,10 @@ new Vue({
           console.log('111');
           axios.post('/admin/login', _this.data).then(function (response) {
             if (response.data.success) {
-              window.location.href = '/admin/test';
+              window.location.href = '/admin/dashboard';
             } else {
               console.log(response.data.message);
-              _this.error = 'Wrong email/password';
+              _this.error = response.data.data;
             }
           });
         } else {
@@ -135,7 +135,7 @@ new Vue({
 
 /***/ }),
 
-/***/ 6:
+/***/ 30:
 /*!***********************************************!*\
   !*** multi ./resources/js/adminAuth/login.js ***!
   \***********************************************/

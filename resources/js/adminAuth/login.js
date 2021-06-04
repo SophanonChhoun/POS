@@ -22,10 +22,10 @@ new Vue({
                     console.log('111')
                     axios.post('/admin/login',this.data).then(response => {
                         if(response.data.success){
-                            window.location.href = '/admin/test';
+                            window.location.href = '/admin/dashboard';
                         }else{
                             console.log(response.data.message);
-                            this.error = 'Wrong email/password';
+                            this.error = response.data.data;
                         }
                     });
                 } else {

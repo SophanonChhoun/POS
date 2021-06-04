@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -254,11 +254,6 @@ __webpack_require__.r(__webpack_exports__);
 
         return;
       });
-
-      if (this.isTranslatable) {
-        label = this.$t('general.' + label);
-      }
-
       return label;
     },
     updateValues: function updateValues(value) {
@@ -4231,16 +4226,12 @@ var render = function() {
           value: _vm.selectOption,
           options: _vm.options,
           "custom-label": _vm.customLabel,
-          label: _vm.isTranslatable
-            ? _vm.$t("general." + _vm.label)
-            : _vm.label,
+          label: _vm.label,
           "track-by": _vm.trackBy,
           "allow-empty": _vm.allowEmpty,
           multiple: false,
-          placeholder: _vm.$t("general.select_option"),
-          selectLabel: _vm.hideSelectLabel
-            ? ""
-            : _vm.$t("general.select_label"),
+          placeholder: "Select Option",
+          selectLabel: _vm.hideSelectLabel ? "" : "Select Option",
           deselectLabel: ""
         },
         on: { select: _vm.updateValues, remove: _vm.removeValues }
@@ -4656,7 +4647,7 @@ new Vue({
 
 /***/ }),
 
-/***/ 4:
+/***/ 28:
 /*!***********************************************!*\
   !*** multi ./resources/js/template/create.js ***!
   \***********************************************/

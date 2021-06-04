@@ -4,14 +4,14 @@
             :value="selectOption"
             :options="options"
             :custom-label="customLabel"
-            :label="isTranslatable ? $t('general.' + label) : label"
+            :label="label"
             :track-by="trackBy"
             @select="updateValues"
             @remove="removeValues"
             :allow-empty="allowEmpty"
             :multiple="false"
-            :placeholder="$t('general.select_option')"
-            :selectLabel="hideSelectLabel ? '' : $t('general.select_label')"
+            :placeholder="'Select Option'"
+            :selectLabel="hideSelectLabel ? '' : 'Select Option'"
             :deselectLabel="''"
         ></multiselect>
     </div>
@@ -80,9 +80,7 @@ export default {
                 }
                 return
             })
-            if (this.isTranslatable) {
-                label = this.$t('general.' + label)
-            }
+
             return label
         },
 

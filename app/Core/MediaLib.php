@@ -31,7 +31,6 @@ class MediaLib
                 'file_url'	=> '/uploads/images/'. $filename,
                 'file_name'	=> $filename,
                 'size'		=> 'Original',
-                'file_base64' => $data,
             ]);
 
             return $media_id;

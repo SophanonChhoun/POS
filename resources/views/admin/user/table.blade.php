@@ -1,16 +1,22 @@
 <table class="table table-bordered">
     <tr class="text-center">
+        <th>No</th>
         <th>Name</th>
         <th>Email</th>
         <th>Profile</th>
+        <th>Date</th>
         <th>Status</th>
         <th colspan="2" class="text-center">Action</th>
     </tr>
-    @forelse($data as $user)
+    @forelse($data as $index => $user)
         <tr class="text-center">
+            <td>{{ $data->firstItem() + $index }}</td>
             <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
             <td>{{ $user->email }}</td>
             <td><img src="{{ $user->media->file_url ?? asset('image/noimage.png') }}" class="img-responsive" style="max-height: 200px;max-width: 200px"></td>
+            <td>
+                {{ date('d-m-Y', strtotime($user->created_at)) }}
+            </td>
             <td>
                 <input type="checkbox" id="itemStatus{{ $user->id }}" @if($user->is_enable) checked @endif>
                 @include("admin.user.status")

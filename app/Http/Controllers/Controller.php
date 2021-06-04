@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Mockery\Exception;
 
 class Controller extends BaseController
 {
@@ -24,7 +25,7 @@ class Controller extends BaseController
     {
         if($code == 500)
         {
-            return response()->json(['success' => false, 'data' => "There is something wrong"]);
+            return response()->json(['success' => false, 'data' => $message]);
         }
         return response()->json(['success' => false, 'data' => $message]);
     }
