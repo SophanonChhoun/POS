@@ -103,17 +103,6 @@ class SaleController extends Controller
         }
     }
 
-    public function updateStatus($id,Request $request)
-    {
-        try {
-            Sale::find($id)->update([
-                "is_enable" => $request->is_enable
-            ]);
-            return back();
-        }catch (Exception $exception){
-            return $this->fail($exception->getMessage());
-        }
-    }
     public function updatePaid($id)
     {
         try {
@@ -135,6 +124,27 @@ class SaleController extends Controller
             ]);
             return back();
         }catch (Exception $exception){
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try {
+            Sale::find($id)->delete();
+            $productSale = ProductSell::where('sale_id', $id)->get();
+            $productSaleID = $productSale->pluck('product_id');
+            ProductSell::where('sale_id', $id)->delete();
+            $productQuantity = Product::quantity($productSaleID);
+            if(!$productQuantity)
+            {
+                return $this->fail('There is error with update product quantity');
+            }
+            DB::commit();
+            return back();
+        }catch (Exception $exception){
+            DB::rollBack();
             return $this->fail($exception->getMessage());
         }
     }

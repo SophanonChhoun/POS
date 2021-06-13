@@ -15,7 +15,6 @@ class Sale extends Model
         'paid',
         'delivered_at',
         'paid_at',
-        'is_enable',
         'promotion_id',
         'totalNotDiscount',
         'currency'

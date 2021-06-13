@@ -9,7 +9,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to update {{ $import->description ?? null }} status?</p>
+                    <p>Are you sure you want to update this status?</p>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ url('admin/import/update/status/'.$import->id) }}" method="post">

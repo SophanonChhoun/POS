@@ -13,7 +13,6 @@ new Vue({
             totalNotDiscount: '',
             total: '',
             buyer_id: '',
-            is_enable: '',
             paid: false,
             delivered: false,
             products: [],
