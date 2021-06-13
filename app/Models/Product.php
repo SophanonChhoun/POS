@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class  Product extends Model
 {
     use HasFactory;
 
@@ -52,6 +52,26 @@ class Product extends Model
             }
             $total = $totalBuy - $totalSell;
             Product::find($product['product_id'])->update([
+                'quantity' => $total
+            ]);
+        }
+
+        return true;
+    }
+
+    public static function quantity($productIds)
+    {
+        foreach ($productIds as $key => $productId)
+        {
+            $buy = ProductImport::where('product_id', $productId)->get();
+            $totalBuy = $buy->pluck('quantity')->sum();
+            $sell = ProductSell::where('product_id', $productId)->get();
+            $totalSell = $sell->pluck('quantity')->sum();
+            if( $totalBuy < $totalSell) {
+                return false;
+            }
+            $total = $totalBuy - $totalSell;
+            Product::find($productId)->update([
                 'quantity' => $total
             ]);
         }

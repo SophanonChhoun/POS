@@ -7183,7 +7183,6 @@ new Vue({
     data: {
       total: '',
       dealer_id: '',
-      is_enable: '',
       paid: false,
       arrived: false,
       products: [],

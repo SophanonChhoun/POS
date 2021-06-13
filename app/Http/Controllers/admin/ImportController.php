@@ -103,17 +103,6 @@ class ImportController extends Controller
         }
     }
 
-    public function updateStatus($id,Request $request)
-    {
-        try {
-            Import::find($id)->update([
-                "is_enable" => $request->is_enable
-            ]);
-            return back();
-        }catch (Exception $exception){
-            return $this->fail($exception->getMessage());
-        }
-    }
     public function updatePaid($id)
     {
         try {
@@ -135,6 +124,27 @@ class ImportController extends Controller
             ]);
             return back();
         }catch (Exception $exception){
+            return $this->fail($exception->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        DB::beginTransaction();
+        try {
+            Import::find($id)->delete();
+            $productImport = ProductImport::where('import_id', $id)->get();
+            $productImportID = $productImport->pluck('product_id');
+            ProductImport::where('import_id', $id)->delete();
+            $productQuantity = Product::quantity($productImportID);
+            if(!$productQuantity)
+            {
+                return $this->fail('There is error with update product quantity');
+            }
+            DB::commit();
+            return back();
+        }catch (Exception $exception){
+            DB::rollBack();
             return $this->fail($exception->getMessage());
         }
     }

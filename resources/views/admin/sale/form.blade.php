@@ -92,6 +92,7 @@
                                         </label>
                                         <input type="text"
                                                :value="getProductPrice(product.product_id, index)"
+                                               class="form-control"
                                                disabled
                                         >
                                     </div>
@@ -169,20 +170,6 @@
                                data-vv-as="Delivered Date"
                         >
                         <span class="help-block">@{{ errors.first('delivered_at') }}</span>
-                    </div>
-                    <div class="form-group col-lg-12" :class="{'has-error' : errors.first('is_enable')}">
-                        <label class="control-label">
-                            Status
-                            <span style="color: red">*</span>
-                        </label>
-                        <input type="checkbox"
-                               style="margin-left: 1%"
-                               name="is_enable"
-                               v-model="data.is_enable"
-                               data-vv-as="Status"
-                               v-validate="'required'"
-                        >
-                        <span class="help-block">@{{ errors.first('is_enable') }}</span>
                     </div>
 
                     <div v-if="error">

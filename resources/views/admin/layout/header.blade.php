@@ -4,7 +4,7 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="dashboard.html">
+            <a class="navbar-brand" href="/admin/dashboard">
                 <!-- Logo icon -->
                 <b class="logo-icon">
                     <!-- Dark Logo icon -->

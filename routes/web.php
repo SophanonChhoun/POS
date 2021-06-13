@@ -152,7 +152,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get("/create",[ImportController::class,'create']);
             Route::post("/create",[ImportController::class,'store']);
             Route::get("/show/{id}",[ImportController::class,'show']);
-            Route::post("/update/{id}",[ImportController::class,'update']);
+            Route::post("/delete/{id}",[ImportController::class,'destroy']);
             Route::post("/update/paid/{id}",[ImportController::class,'updatePaid']);
             Route::post("/update/status/{id}",[ImportController::class,'updateStatus']);
             Route::post("/update/arrived/{id}",[ImportController::class,'updateArrived']);
@@ -164,7 +164,7 @@ Route::group(['prefix' => 'admin'], function(){
             Route::get("/show/{id}",[SaleController::class,'show']);
             Route::post("/update/{id}",[SaleController::class,'update']);
             Route::post("/update/paid/{id}",[SaleController::class,'updatePaid']);
-            Route::post("/update/status/{id}",[SaleController::class,'updateStatus']);
+            Route::post("/delete/{id}",[SaleController::class,'destroy']);
             Route::post("/update/delivered/{id}",[SaleController::class,'updateDelivered']);
         });
         Route::group(['prefix' => "banner"],function (){

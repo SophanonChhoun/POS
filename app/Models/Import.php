@@ -15,7 +15,6 @@ class Import extends Model
       'paid',
       'arrived_at',
       'paid_at',
-      'is_enable',
       'currency'
     ];
 

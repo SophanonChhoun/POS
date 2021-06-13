@@ -7,7 +7,7 @@
         <th>Delivered</th>
         <th>Paid</th>
         <th>Status</th>
-        <th colspan="1" class="text-center">Action</th>
+        <th colspan="2" class="text-center">Action</th>
     </tr>
     @forelse($data as $index => $sale)
         <tr class="text-center">
@@ -37,9 +37,12 @@
 
             </td>
             <td><a href="/admin/sale/show/{{ $sale->id }}" class="btn btn-warning">Edit</a></td>
-
+            <td>
+                <button type="button" class="btn btn-danger" id="myBtn{{ $sale->id }}">Delete</button>
+                @include('admin.sale.delete')
+            </td>
             @empty
-                <td colspan="6" class="text-center">There is no value</td>
+                <td colspan="7" class="text-center">There is no value</td>
         </tr>
     @endforelse
 </table>
